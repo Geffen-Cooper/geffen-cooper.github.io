@@ -24,6 +24,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-My name is Geffen Cooper. I am a third-year Ph.D. student in the [System Level Design (SLD)](https://radum.ece.utexas.edu/) group at UT Austin advised by Professor [Radu Marculescu](https://www.ece.utexas.edu/people/faculty/radu-marculescu). Before my Ph.D., I graduated from UC Santa Barbara (UCSB) in 2022 with a B.S. in computer engineering.
+My name is Geffen Cooper. I am a fourth-year Ph.D. student in the [System Level Design (SLD)](https://radum.ece.utexas.edu/) group at UT Austin advised by Professor [Radu Marculescu](https://www.ece.utexas.edu/people/faculty/radu-marculescu). Before my Ph.D., I graduated from UC Santa Barbara (UCSB) in 2022 with a B.S. in computer engineering.
 
 My research focuses on machine learning with *batteryless* sensors, with applications in wearables and multisensor human activity recognition. More broadly, I am interested in time-series and designing efficient algorithms for processing sparse and asynchronous data streams. I am also passionate about Edge AI, exploring low-power deep learning solutions for resource-constrained devices.
