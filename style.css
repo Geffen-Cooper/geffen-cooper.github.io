@@ -150,11 +150,21 @@ nav a:hover{color:var(--ink);text-decoration:none}
 
 @media (max-width:720px){
   .pub{grid-template-columns:1fr}
-  .publeft{max-width:320px}
+  .publeft{
+    max-width:100%;
+    display:flex;
+    justify-content:center; /* Centers the thumbnail horizontally */
+  }
+  .pub .thumb {
+    width: 240px; /* Optional: constraints preview width so it doesn't stretch 100% wide */
+  }
 }
 @media (max-width:880px){
-  #cta .btn{flex:1 1 0;padding:0}
-  #cta .btn span{display:none}
+  #cta .btn{flex:1 1 0;padding:0 8px}
+  /* Keep text visible specifically for the Résumé button */
+  #cta .btn:first-child span{display:inline !important;}
+  /* Hide text for the remaining icon-only buttons */
+  #cta .btn:not(:first-child) span{display:none}
 }
 @media (max-width:640px){
   .hero{flex-direction:column-reverse;align-items:flex-start;gap:20px}

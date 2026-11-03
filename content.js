@@ -36,7 +36,7 @@ const SITE = {
     ]
   },
 
-  lastUpdated: "November 3, 2026",   // edit this when you update the site
+  lastUpdated: "Nov. 3, 2026",   // edit this when you update the site
 
   // selected: true  -> shown by default. All entries show under "All publications".
   // image, pdf, and doi are optional.
