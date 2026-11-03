@@ -24,34 +24,80 @@ $("name").innerHTML = `<strong>${esc(first)}</strong> ${esc(rest.join(" "))}`;
 $("affil").innerHTML = md(S.affiliation);
 $("headshot").src = S.headshot;
 $("headshot").onerror = e => e.target.remove();
-$("nav").innerHTML = [["system","System"],["publications","Publications"],["news","News"]].map(([id, t]) => `<a href="#${id}">${t}</a>`).join("");
+$("nav").innerHTML = [["system","Projects"],["publications","Publications"],["news","News"]].map(([id, t]) => `<a href="#${id}">${t}</a>`).join("");
 $("cta").innerHTML = S.links.map((l, i) => btn(l, i ? "" : "primary")).join("");
 $("aboutText").innerHTML = S.about.map(p => `<p>${md(p)}</p>`).join("");
 
 const sys = S.system;
 $("sysTitle").textContent = sys.title;
 $("sysText").innerHTML = sys.text.map(p => `<p>${md(p)}</p>`).join("");
-$("sysMedia").innerHTML = sys.video
-  ? `<video src="${esc(sys.video)}" poster="${esc(sys.poster)}" controls muted playsinline preload="metadata"></video>`
-  : `<div class="ph">Add a demo video in content.js</div>`;
+
+const slides = [];
+
+if (sys.video) {
+  slides.push({ type: "video", src: sys.video, poster: sys.poster, caption: md("**Demo:** 4 *batteryless* nodes (on the feet and wrists) broadcast accelerometer packets by harvesting energy from indoor light.") });
+}
+if (sys.gallery) {
+  sys.gallery.forEach(item => slides.push({ type: "image", image: item.image, caption: md(item.caption) }));
+}
+
+const mediaContainer = $("mediaContent");
+mediaContainer.innerHTML = slides.map((s, idx) => `
+  <div class="slide-item ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+    ${s.type === "video" 
+      ? `<video class="sys-vid" src="${esc(s.src)}" ${s.poster ? `poster="${esc(s.poster)}"` : ""} controls playsinline preload="metadata"></video>` 
+      : `<img src="${esc(s.image)}" alt="${esc(s.caption)}" onerror="${ph}">`}
+  </div>
+`).join("");
+
+// Automatically set container aspect ratio based on video metadata
+const videoEl = mediaContainer.querySelector("video");
+if (videoEl) {
+  videoEl.addEventListener("loadedmetadata", () => {
+    if (videoEl.videoWidth && videoEl.videoHeight) {
+      mediaContainer.style.aspectRatio = `${videoEl.videoWidth} / ${videoEl.videoHeight}`;
+    }
+  });
+}
 
 let gi = 0;
-const G = sys.gallery;
-function showGal(i) {
-  gi = (i + G.length) % G.length;
-  const m = $("galMedia"), old = m.querySelector(".ph");
-  if (old) { const im = document.createElement("img"); im.id = "galImg"; old.replaceWith(im); }
-  const img = $("galImg");
-  img.onerror = () => { img.replaceWith(Object.assign(document.createElement("div"), { className: "ph", textContent: "Add image" })); };
-  img.src = G[gi].image; img.alt = G[gi].caption;
-  $("galCap").textContent = G[gi].caption;
-  $("galCount").textContent = `(${gi + 1}/${G.length})`;
+function showSlide(i) {
+  if (slides.length === 0) return;
+  gi = (i + slides.length) % slides.length;
+  
+  mediaContainer.querySelectorAll(".slide-item").forEach((el, idx) => {
+    el.classList.toggle("active", idx === gi);
+    const vid = el.querySelector("video");
+    if (vid && idx !== gi) vid.pause();
+  });
+
+  $("galCap").innerHTML = slides[gi].caption;
+  renderBars();
 }
-$("prev").onclick = () => showGal(gi - 1);
-$("next").onclick = () => showGal(gi + 1);
-$("galMedia").addEventListener("keydown", e => { if (e.key === "ArrowLeft") showGal(gi - 1); if (e.key === "ArrowRight") showGal(gi + 1); });
-if (G.length < 2) { $("prev").hidden = $("next").hidden = true; }
-if (G.length) showGal(0);
+
+function renderBars() {
+  const barsContainer = $("galBars");
+  if (!barsContainer) return;
+  barsContainer.innerHTML = slides.map((_, idx) => 
+    `<button class="gal-bar ${idx === gi ? 'active' : ''}" type="button" aria-label="Go to slide ${idx + 1}" data-index="${idx}"></button>`
+  ).join("");
+  barsContainer.querySelectorAll(".gal-bar").forEach(b => {
+    b.onclick = () => showSlide(parseInt(b.dataset.index, 10));
+  });
+}
+
+const prevBtn = $("prev"), nextBtn = $("next");
+if (slides.length < 2) {
+  if (prevBtn) prevBtn.hidden = true;
+  if (nextBtn) nextBtn.hidden = true;
+  if ($("galBars")) $("galBars").hidden = true;
+} else {
+  if (prevBtn) prevBtn.onclick = () => showSlide(gi - 1);
+  if (nextBtn) nextBtn.onclick = () => showSlide(gi + 1);
+}
+if (slides.length > 0) {
+  showSlide(0);
+}
 
 const pubHtml = p => `
   <article class="pub${p.image ? "" : " noimg"}">

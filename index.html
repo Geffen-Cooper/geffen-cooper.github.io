@@ -26,12 +26,14 @@
   <section class="wrap" id="system">
     <h2 id="sysTitle"></h2>
     <div class="prose" id="sysText"></div>
-    <div class="split">
-      <div class="media" id="sysMedia"></div>
-      <div class="gal" aria-label="Hardware gallery">
-        <div class="media" id="galMedia"><img id="galImg" alt=""><button class="arrow l" id="prev" aria-label="Previous image">‹</button><button class="arrow r" id="next" aria-label="Next image">›</button></div>
-        <p class="cap"><span id="galCap"></span> <span class="muted" id="galCount"></span></p>
+    <div class="gal" aria-label="System media gallery" style="margin-top: 20px;">
+      <div class="media" id="mediaContent"></div>
+      <div class="gal-controls">
+        <button class="btn small" id="prev" aria-label="Previous item">‹ Prev</button>
+        <div class="gal-bars" id="galBars" aria-label="Slide indicators"></div>
+        <button class="btn small" id="next" aria-label="Next item">Next ›</button>
       </div>
+      <p class="cap"><span id="galCap"></span></p>
     </div>
   </section>
   <section class="wrap" id="publications"><div class="sechead"><h2 id="pubTitle">Selected publications</h2><button class="btn small" id="pubToggle" type="button"></button></div><div id="pubs"></div></section>
