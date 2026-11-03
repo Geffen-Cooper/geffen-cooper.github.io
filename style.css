@@ -152,11 +152,11 @@ nav a:hover{color:var(--ink);text-decoration:none}
   .pub{grid-template-columns:1fr}
   .publeft{
     max-width:100%;
-    display:flex;
-    justify-content:center; /* Centers the thumbnail horizontally */
+    width:100%;
   }
   .pub .thumb {
-    width: 240px; /* Optional: constraints preview width so it doesn't stretch 100% wide */
+    width: 100%;
+    max-width: 100%;
   }
 }
 @media (max-width:880px){
