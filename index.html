@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geffen Cooper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="#top" id="brand"></a>
+  <nav id="nav"></nav>
+</div></header>
+<main id="top">
+  <section class="wrap hero">
+    <div class="hero-text">
+      <h1 id="name"></h1>
+      <p class="sub" id="affil"></p>
+      <div class="btns" id="cta"></div>
+    </div>
+    <img class="headshot" id="headshot" alt="Portrait">
+  </section>
+  <section class="wrap" id="about"><div class="prose" id="aboutText"></div></section>
+  <section class="wrap" id="system">
+    <h2 id="sysTitle"></h2>
+    <div class="prose" id="sysText"></div>
+    <div class="split">
+      <div class="media" id="sysMedia"></div>
+      <div class="gal" aria-label="Hardware gallery">
+        <div class="media" id="galMedia"><img id="galImg" alt=""><button class="arrow l" id="prev" aria-label="Previous image">‹</button><button class="arrow r" id="next" aria-label="Next image">›</button></div>
+        <p class="cap"><span id="galCap"></span> <span class="muted" id="galCount"></span></p>
+      </div>
+    </div>
+  </section>
+  <section class="wrap" id="publications"><div class="sechead"><h2 id="pubTitle">Selected publications</h2><button class="btn small" id="pubToggle" type="button"></button></div><div id="pubs"></div></section>
+  <section class="wrap" id="news"><h2>News</h2><div id="newsList"></div><button class="btn" id="more" hidden></button></section>
+</main>
+<footer class="wrap foot" id="foot"></footer>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
