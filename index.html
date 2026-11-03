@@ -22,22 +22,37 @@
     </div>
     <img class="headshot" id="headshot" alt="Portrait">
   </section>
+
   <section class="wrap" id="about"><div class="prose" id="aboutText"></div></section>
+
   <section class="wrap" id="system">
-    <h2 id="sysTitle"></h2>
+    <h2>Projects</h2>
+    <h3 id="sysTitle" style="font-size:1.2rem; margin-bottom:12px;"></h3>
     <div class="prose" id="sysText"></div>
     <div class="gal" aria-label="System media gallery" style="margin-top: 20px;">
       <div class="media" id="mediaContent"></div>
       <div class="gal-controls">
-        <button class="btn small" id="prev" aria-label="Previous item">‹ Prev</button>
+        <button class="btn outlined" id="prev" aria-label="Previous item">← Previous</button>
         <div class="gal-bars" id="galBars" aria-label="Slide indicators"></div>
-        <button class="btn small" id="next" aria-label="Next item">Next ›</button>
+        <button class="btn outlined" id="next" aria-label="Next item">See More →</button>
       </div>
       <p class="cap"><span id="galCap"></span></p>
     </div>
   </section>
-  <section class="wrap" id="publications"><div class="sechead"><h2 id="pubTitle">Selected publications</h2><button class="btn small" id="pubToggle" type="button"></button></div><div id="pubs"></div></section>
-  <section class="wrap" id="news"><h2>News</h2><div id="newsList"></div><button class="btn" id="more" hidden></button></section>
+
+  <section class="wrap" id="publications">
+    <div class="sechead">
+      <h2 id="pubTitle">Selected publications</h2>
+      <button class="btn small" id="pubToggle" type="button"></button>
+    </div>
+    <div id="pubs"></div>
+  </section>
+
+  <section class="wrap" id="news">
+    <h2>News</h2>
+    <div id="newsList"></div>
+    <button class="btn" id="more" hidden></button>
+  </section>
 </main>
 <footer class="wrap foot" id="foot"></footer>
 <script src="content.js"></script>

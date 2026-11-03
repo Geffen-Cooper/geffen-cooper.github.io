@@ -33,7 +33,6 @@ $("sysTitle").textContent = sys.title;
 $("sysText").innerHTML = sys.text.map(p => `<p>${md(p)}</p>`).join("");
 
 const slides = [];
-
 if (sys.video) {
   slides.push({ type: "video", src: sys.video, poster: sys.poster, caption: md("**Demo:** 4 *batteryless* nodes (on the feet and wrists) broadcast accelerometer packets by harvesting energy from indoor light.") });
 }
@@ -50,7 +49,6 @@ mediaContainer.innerHTML = slides.map((s, idx) => `
   </div>
 `).join("");
 
-// Automatically set container aspect ratio based on video metadata
 const videoEl = mediaContainer.querySelector("video");
 if (videoEl) {
   videoEl.addEventListener("loadedmetadata", () => {
@@ -73,6 +71,11 @@ function showSlide(i) {
 
   $("galCap").innerHTML = slides[gi].caption;
   renderBars();
+  
+  const nextBtn = $("next");
+  if (nextBtn) {
+    nextBtn.textContent = gi === slides.length - 1 ? "Start Over ↺" : "See More →";
+  }
 }
 
 function renderBars() {
